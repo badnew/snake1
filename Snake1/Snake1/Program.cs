@@ -23,9 +23,8 @@ namespace Snake1
             leftLine.Drow();
             rightLine.Drow();
 
-            // Отрисовка точки
             Point p = new Point(4, 5, '*');
-            p.Draw();
+            Snake snake = new Snake
 
 
 
