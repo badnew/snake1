@@ -63,6 +63,11 @@ namespace Snake1
                 Console.WriteLine(k.sym);
             }
 
+            foreach (Point k in pointList)
+            {
+                k.Draw();
+            }
+
             Console.ReadLine();
         }
     }
