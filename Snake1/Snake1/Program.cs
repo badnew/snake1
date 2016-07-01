@@ -11,7 +11,7 @@ namespace Snake1
     {
         static void Main(string[] args)
         {
-            // Установка размера буффера консоли. Не должен быть меньше текущего размера консоли.
+            // Установка размера буффера консоли
             Console.SetBufferSize(80, 25);
 
             // Отрисовка рамки
@@ -27,18 +27,30 @@ namespace Snake1
             Point p = new Point(4, 5, '*');
             Snake snake = new Snake(p, 4, Direction.RIGHT);
             snake.Drow();
-            snake.Move();
+
+            FoodCreator foodCreator = new FoodCreator(80, 25, '$');
+            Point food = foodCreator.CreateFood();
+            food.Draw();
 
             while (true)
             {
+                if (snake.Eat(food))
+                {
+                    food = foodCreator.CreateFood();
+                    food.Draw();
+                }
+                else
+                {
+                    snake.Move();
+                }
+
+                Thread.Sleep(100);
+
                 if (Console.KeyAvailable)
                 {
                     ConsoleKeyInfo key = Console.ReadKey();
                     snake.handleKey(key.Key);
                 }
-
-                Thread.Sleep(100);
-                snake.Move();
             }
         }
     }
